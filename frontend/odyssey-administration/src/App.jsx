@@ -1,6 +1,11 @@
+import Login from "./Components/Login/Login.jsx"
+import "./Components/Login/Login.css"
+
 
 function App() {
- return <h1>Oddysey</h1>
+    return (
+        <div><Login/></div>
+    )
 }
 
 export default App
