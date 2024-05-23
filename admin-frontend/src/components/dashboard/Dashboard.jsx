@@ -3,7 +3,7 @@ import SidebarWithHeader from "../shared/SidebarWithHeader";
 const Dashboard = () => {
     return (
         <SidebarWithHeader>
-            <h1>Hello</h1>
+            <h1></h1>
         </SidebarWithHeader>
     );
 }
