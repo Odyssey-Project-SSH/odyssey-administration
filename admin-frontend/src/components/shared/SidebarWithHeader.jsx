@@ -32,6 +32,7 @@ import { MdEventAvailable } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import Users from './Users';
+import Events from './Events';
 
 const LinkItems = [
     { name: 'Users', icon: FiUsers },
@@ -71,7 +72,7 @@ export default function SidebarWithHeader({ children }) {
                 {selectedContent === 'Users' && <Users />}
                 {selectedContent === 'Locations' && <Text>Locations Content</Text>}
                 {selectedContent === 'Activities' && <Text>Activities Content</Text>}
-                {selectedContent === 'Events' && <Text>Events Content</Text>}
+                {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <Text>News Content</Text>}
                 {selectedContent === 'Recommendations' && <Text>Recommendations Content</Text>}
                 {children}
