@@ -34,12 +34,12 @@ import { IoLocationOutline } from "react-icons/io5";
 
 
 const LinkItems = [
-    { name: 'Users', icon: FiUsers },
-    { name: 'Locations', icon: IoLocationOutline },
-    { name: 'Activities', icon: FiDribbble },
-    { name: 'Events', icon: MdEventAvailable },
-    { name: 'News', icon: FaRegNewspaper },
-    { name: 'Recommendations', icon: FiStar },
+    { name: 'Users', icon: FiUsers, link: "" },
+    { name: 'Locations', icon: IoLocationOutline, link: "" },
+    { name: 'Activities', icon: FiDribbble, link: "" },
+    { name: 'Events', icon: MdEventAvailable, link: "" },
+    { name: 'News', icon: FaRegNewspaper, link: "" },
+    { name: 'Recommendations', icon: FiStar, link: "/recommendations" },
 ];
 
 export default function SidebarWithHeader({
@@ -91,7 +91,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
         </Flex>
         {LinkItems.map((link) => (
-            <NavItem key={link.name} icon={link.icon}>
+            <NavItem key={link.name} icon={link.icon} to={link.link}>
             {link.name}
             </NavItem>
         ))}
