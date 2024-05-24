@@ -35,12 +35,12 @@ import Users from './Users';
 import Events from './Events';
 
 const LinkItems = [
-    { name: 'Users', icon: FiUsers },
-    { name: 'Locations', icon: IoLocationOutline },
-    { name: 'Activities', icon: FiDribbble },
-    { name: 'Events', icon: MdEventAvailable },
-    { name: 'News', icon: FaRegNewspaper },
-    { name: 'Recommendations', icon: FiStar },
+    { name: 'Users', icon: FiUsers, link: "" },
+    { name: 'Locations', icon: IoLocationOutline, link: "" },
+    { name: 'Activities', icon: FiDribbble, link: "" },
+    { name: 'Events', icon: MdEventAvailable, link: "" },
+    { name: 'News', icon: FaRegNewspaper, link: "" },
+    { name: 'Recommendations', icon: FiStar, link: "/recommendations" },
 ];
 
 export default function SidebarWithHeader({ children }) {
