@@ -38,6 +38,7 @@ import Users from './Users';
 import Locations from './Locations'
 import Events from './Events';
 import PostsDashboard from './Posts';
+import Activities from './Activities'
 
 const LinkItems = [
     { name: 'Users', icon: FiUsers, link: "" },
@@ -79,7 +80,7 @@ export default function SidebarWithHeader({ children }) {
                 {selectedContent === 'Users' && <Users />}
                 {selectedContent === 'Locations' && <Locations />}
                 {selectedContent === 'Posts' && <PostsDashboard />}
-                {selectedContent === 'Activities' && <Text>Activities Content</Text>}
+                {selectedContent === 'Activities' && <Activities/>}
                 {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <Text>News Content</Text>}
                 {selectedContent === 'Recommendations' && <Recommendations />}
