@@ -4,6 +4,8 @@ import './App.css'
 import Authentication from './components/authentication/Authentication';
 import Dashboard from './components/dashboard/Dashboard';
 import News from './components/news/News';
+import Recommendations from './components/recommendations/Recommendations';
+import Trips from './components/trips/Trips';
 
 const App = () => {
 	return (
@@ -13,6 +15,8 @@ const App = () => {
 					<Route exact path="/" element={ <Authentication /> } />
 					<Route path="/dashboard" element={ <Dashboard /> } />
 					<Route path="/news" element={ <News />} />
+					<Route path="/recommendations" element={ <Recommendations /> } />
+					<Route path="/trips" element={ <Trips /> } />
 				</Routes>
 			</div>
 		</Router>
