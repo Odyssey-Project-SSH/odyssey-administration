@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Recommendations from '../recommendations/Recommendations';
+import Trips from '../trips/Trips';
 import {
   IconButton,
   Avatar,
@@ -27,6 +29,7 @@ import {
     FiBell,
     FiChevronDown,
     FiDribbble,
+
 } from 'react-icons/fi';
 import { MdEventAvailable } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa6";
@@ -43,6 +46,7 @@ const LinkItems = [
     { name: 'Events', icon: MdEventAvailable, link: "" },
     { name: 'News', icon: FaRegNewspaper, link: "" },
     { name: 'Recommendations', icon: FiStar, link: "/recommendations" },
+    { name: 'Trips', icon: FiStar, link: "/trips" }
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -77,7 +81,8 @@ export default function SidebarWithHeader({ children }) {
                 {selectedContent === 'Activities' && <Text>Activities Content</Text>}
                 {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <Text>News Content</Text>}
-                {selectedContent === 'Recommendations' && <Text>Recommendations</Text>}
+                {selectedContent === 'Recommendations' && <Recommendations />}
+                {selectedContent === 'Trips' && <Trips />}
                 {children}
             </Box>
         </Box>

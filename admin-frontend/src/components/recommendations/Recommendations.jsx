@@ -91,8 +91,7 @@ const Recommendations = () => {
     };
 
     return (
-        <SidebarWithHeader>
-            
+        <>
             <FormControl mb="4">
                 <FormLabel>City</FormLabel>
                 <Input
@@ -209,7 +208,7 @@ const Recommendations = () => {
                     </AlertDialogContent>
                 </AlertDialogOverlay>
             </AlertDialog>
-        </SidebarWithHeader>
+        </>
     );
 }
 
