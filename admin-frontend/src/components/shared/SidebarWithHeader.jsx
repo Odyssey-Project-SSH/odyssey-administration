@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Recommendations from '../recommendations/Recommendations';
+import Trips from '../trips/Trips';
 import {
   IconButton,
   Avatar,
@@ -27,20 +29,25 @@ import {
     FiBell,
     FiChevronDown,
     FiDribbble,
+
 } from 'react-icons/fi';
 import { MdEventAvailable } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import Users from './Users';
 import Locations from './Locations'
+import Events from './Events';
+import PostsDashboard from './Posts';
 
 const LinkItems = [
-    { name: 'Users', icon: FiUsers },
-    { name: 'Locations', icon: IoLocationOutline },
-    { name: 'Activities', icon: FiDribbble },
-    { name: 'Events', icon: MdEventAvailable },
-    { name: 'News', icon: FaRegNewspaper },
-    { name: 'Recommendations', icon: FiStar },
+    { name: 'Users', icon: FiUsers, link: "" },
+    { name: 'Posts', icon: FiUsers, link: "" },
+    { name: 'Locations', icon: IoLocationOutline, link: "" },
+    { name: 'Activities', icon: FiDribbble, link: "" },
+    { name: 'Events', icon: MdEventAvailable, link: "" },
+    { name: 'News', icon: FaRegNewspaper, link: "" },
+    { name: 'Recommendations', icon: FiStar, link: "/recommendations" },
+    { name: 'Trips', icon: FiStar, link: "/trips" }
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -71,10 +78,12 @@ export default function SidebarWithHeader({ children }) {
             <Box ml={{ base: 0, md: 60 }} p="4">
                 {selectedContent === 'Users' && <Users />}
                 {selectedContent === 'Locations' && <Locations />}
+                {selectedContent === 'Posts' && <PostsDashboard />}
                 {selectedContent === 'Activities' && <Text>Activities Content</Text>}
-                {selectedContent === 'Events' && <Text>Events Content</Text>}
+                {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <Text>News Content</Text>}
-                {selectedContent === 'Recommendations' && <Text>Recommendations Content</Text>}
+                {selectedContent === 'Recommendations' && <Recommendations />}
+                {selectedContent === 'Trips' && <Trips />}
                 {children}
             </Box>
         </Box>
