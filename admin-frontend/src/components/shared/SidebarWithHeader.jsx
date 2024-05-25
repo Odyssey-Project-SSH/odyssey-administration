@@ -35,6 +35,7 @@ import { MdEventAvailable } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import Users from './Users';
+import Locations from './Locations'
 import Events from './Events';
 import PostsDashboard from './Posts';
 
@@ -76,8 +77,8 @@ export default function SidebarWithHeader({ children }) {
             <MobileNav onOpen={onOpen} />
             <Box ml={{ base: 0, md: 60 }} p="4">
                 {selectedContent === 'Users' && <Users />}
+                {selectedContent === 'Locations' && <Locations />}
                 {selectedContent === 'Posts' && <PostsDashboard />}
-                {selectedContent === 'Locations' && <Text>Locations Content</Text>}
                 {selectedContent === 'Activities' && <Text>Activities Content</Text>}
                 {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <Text>News Content</Text>}
