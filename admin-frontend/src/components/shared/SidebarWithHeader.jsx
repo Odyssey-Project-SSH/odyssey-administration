@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Recommendations from '../dashboard/Recommendations.jsx';
+import React, { useEffect, useState } from 'react';
 import Trips from '../dashboard/Trips.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import logo from '../../assets/odyssey-logo.png'
@@ -23,7 +22,8 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-  Image
+  Image,
+  Divider
 } from '@chakra-ui/react';
 import {
     FiUsers,
@@ -38,12 +38,15 @@ import { GiJourney } from "react-icons/gi";
 import { MdEventAvailable } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
+import { RiAdminLine } from "react-icons/ri";
 import Users from '../dashboard/Users.jsx';
 import Locations from '../dashboard/Locations.jsx'
 import Events from '../dashboard/Events.jsx';
 import PostsDashboard from '../dashboard/Posts.jsx';
 import Activities from '../dashboard/Activities.jsx';
 import News from '../dashboard/News.jsx';
+import AdminProfile from '../profile/AdminProfile.jsx';
+
 
 const LinkItems = [
     { name: 'Users', icon: FiUsers },
@@ -52,8 +55,8 @@ const LinkItems = [
     { name: 'Activities', icon: FiDribbble },
     { name: 'Events', icon: MdEventAvailable },
     { name: 'News', icon: FaRegNewspaper },
-    { name: 'Recommendations', icon: FiStar },
     { name: 'Trips', icon: GiJourney }
+    // { name: 'Profile', icon: RiAdminLine }
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -88,8 +91,8 @@ export default function SidebarWithHeader({ children }) {
                 {selectedContent === 'Activities' && <Activities/>}
                 {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <News /> }
-                {selectedContent === 'Recommendations' && <Recommendations />}
                 {selectedContent === 'Trips' && <Trips />}
+                {selectedContent === 'Profile' && <AdminProfile />}
                 {children}
             </Box>
         </Box>
@@ -119,6 +122,10 @@ const SidebarContent = ({ onClose, onSelectContent, ...rest }) => {
                     {link.name}
                 </NavItem>
             ))}
+            <Divider borderColor={'black.100'} w={'85%'} ml={4} my={1} />
+            <NavItem key={'Profile'} icon={RiAdminLine} onClick={() => onSelectContent('Profile')}>
+                Profile
+            </NavItem>
         </Box>
     );
 };
@@ -222,8 +229,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
                             bg={useColorModeValue('white', 'gray.900')}
                             borderColor={useColorModeValue('gray.200', 'gray.700')}>
                             <MenuItem>Profile</MenuItem>
-                            <MenuItem>Settings</MenuItem>
-                            <MenuItem>Billing</MenuItem>
                             <MenuDivider />
                             <MenuItem onClick={logOut}>Sign out</MenuItem>
                         </MenuList>

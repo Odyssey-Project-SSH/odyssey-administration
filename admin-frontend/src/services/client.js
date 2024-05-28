@@ -213,6 +213,20 @@ export const registerNews = async (news) => {
 }
 
 // PUT REQUESTS
+
+export const updateUser = async (id, user) => {
+    try {
+        return await axios.put(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/users/${id}`,
+            user,
+            getAuthConfigWithMultipartFiles()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
 export const updateLocation = async (id, location) => {
     try {
         return await axios.put(
@@ -268,6 +282,18 @@ export const login = async (usernameAndPassword) => {
     try {
         return await axios.post(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`,
+            usernameAndPassword
+        )
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const verify = async (usernameAndPassword) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/verify`,
             usernameAndPassword
         )
     }

@@ -25,6 +25,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { successNotification, errorNotification } from '../../services/notification.js';
 import { getAuthenticatedUser } from '../../services/auth.js';
+import { adminRegistrationFormValidation } from '../../services/validation.js';
 
 const Section = ({ children }) => (
 	<Box w="100%">
@@ -39,29 +40,7 @@ const AdminRegistrationForm = ( { fetchUsers, onClose } ) => {
     return (
         <Formik
             validateOnMount={true}
-            validationSchema={
-                Yup.object({
-					fullname: Yup
-								.string()
-								.min(5, "Fullname has to be at least 5 characters!")
-								.max(30, "Fullname cannot be longer than 30 characters!")
-								.required("Fullname is required!"),
-                    username: Yup
-								.string()
-								.min(5, "Username has to be at least 5 character!")
-								.max(30, "Username cannot be longer than 30 characters!")
-								.required("Username is required!"),
-					email: Yup
-								.string()
-								.email()
-								.required("Email is required!"),
-                    password: Yup
-								.string()
-								.min(5, "Password must be at least 5 characters")
-								.max(20, "Username cannot be longer than 20 characters!")
-								.required("Password is required")
-                })
-            }
+            validationSchema={ adminRegistrationFormValidation }
             initialValues={{fullname: '', username: '', email: '', password: ''}}
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(true);

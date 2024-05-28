@@ -269,3 +269,25 @@ export const newsRegistrationFormValidation = Yup.object({
                     return true;
                 })
 })
+
+export const adminRegistrationFormValidation = Yup.object({
+	fullname: Yup
+				.string()
+				.min(5, "Fullname has to be at least 5 characters!")
+				.max(30, "Fullname cannot be longer than 30 characters!")
+				.required("Fullname is required!"),
+	username: Yup
+				.string()
+				.min(5, "Username has to be at least 5 character!")
+				.max(30, "Username cannot be longer than 30 characters!")
+				.required("Username is required!"),
+	email: Yup
+				.string()
+				.email()
+				.required("Email is required!"),
+	password: Yup
+				.string()
+				.min(5, "Password must be at least 5 characters")
+				.max(20, "Username cannot be longer than 20 characters!")
+				.required("Password is required")
+});
