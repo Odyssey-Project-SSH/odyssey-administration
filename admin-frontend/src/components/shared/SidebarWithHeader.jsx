@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import Recommendations from '../recommendations/Recommendations';
-import Trips from '../trips/Trips';
+import Recommendations from '../dashboard/Recommendations.jsx';
+import Trips from '../dashboard/Trips.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
+import logo from '../../assets/odyssey-logo.png'
 import {
   IconButton,
   Avatar,
@@ -21,6 +23,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Image
 } from '@chakra-ui/react';
 import {
     FiUsers,
@@ -28,27 +31,29 @@ import {
     FiMenu,
     FiBell,
     FiChevronDown,
-    FiDribbble,
-
+    FiDribbble
 } from 'react-icons/fi';
+import { BsSignpostSplit } from "react-icons/bs";
+import { GiJourney } from "react-icons/gi";
 import { MdEventAvailable } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
-import Users from './Users';
-import Locations from './Locations'
-import Events from './Events';
-import PostsDashboard from './Posts';
-import Activities from './Activities'
+import Users from '../dashboard/Users.jsx';
+import Locations from '../dashboard/Locations.jsx'
+import Events from '../dashboard/Events.jsx';
+import PostsDashboard from '../dashboard/Posts.jsx';
+import Activities from '../dashboard/Activities.jsx';
+import News from '../dashboard/News.jsx';
 
 const LinkItems = [
-    { name: 'Users', icon: FiUsers, link: "" },
-    { name: 'Posts', icon: FiUsers, link: "" },
-    { name: 'Locations', icon: IoLocationOutline, link: "" },
-    { name: 'Activities', icon: FiDribbble, link: "" },
-    { name: 'Events', icon: MdEventAvailable, link: "" },
-    { name: 'News', icon: FaRegNewspaper, link: "" },
-    { name: 'Recommendations', icon: FiStar, link: "/recommendations" },
-    { name: 'Trips', icon: FiStar, link: "/trips" }
+    { name: 'Users', icon: FiUsers },
+    { name: 'Posts', icon: BsSignpostSplit },
+    { name: 'Locations', icon: IoLocationOutline },
+    { name: 'Activities', icon: FiDribbble },
+    { name: 'Events', icon: MdEventAvailable },
+    { name: 'News', icon: FaRegNewspaper },
+    { name: 'Recommendations', icon: FiStar },
+    { name: 'Trips', icon: GiJourney }
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -82,7 +87,7 @@ export default function SidebarWithHeader({ children }) {
                 {selectedContent === 'Posts' && <PostsDashboard />}
                 {selectedContent === 'Activities' && <Activities/>}
                 {selectedContent === 'Events' && <Events />}
-                {selectedContent === 'News' && <Text>News Content</Text>}
+                {selectedContent === 'News' && <News /> }
                 {selectedContent === 'Recommendations' && <Recommendations />}
                 {selectedContent === 'Trips' && <Trips />}
                 {children}
@@ -102,7 +107,8 @@ const SidebarContent = ({ onClose, onSelectContent, ...rest }) => {
             pos="fixed"
             h="full"
             {...rest}>
-            <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+            <Flex h="20" alignItems="center" mx="3" justifyContent="left">
+                <Image src={logo} boxSize='75px' />
                 <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
                     Odyssey
                 </Text>
@@ -149,6 +155,8 @@ const NavItem = ({ icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+    const {logOut, user} = useAuth();
+
     return (
         <Flex
             ml={{ base: 0, md: 60 }}
@@ -192,18 +200,17 @@ const MobileNav = ({ onOpen, ...rest }) => {
                             <HStack>
                                 <Avatar
                                     size={'sm'}
-                                    src={
-                                        'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                                    }
+                                    src={''}
+                                    // src={`'${user?.avatar}'`}
                                 />
                                 <VStack
                                     display={{ base: 'none', md: 'flex' }}
                                     alignItems="flex-start"
                                     spacing="1px"
                                     ml="2">
-                                    <Text fontSize="sm">Justina Clark</Text>
+                                    <Text fontSize="sm">{user?.username}</Text>
                                     <Text fontSize="xs" color="gray.600">
-                                        Admin
+                                        {user?.role}
                                     </Text>
                                 </VStack>
                                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -218,7 +225,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                             <MenuItem>Settings</MenuItem>
                             <MenuItem>Billing</MenuItem>
                             <MenuDivider />
-                            <MenuItem>Sign out</MenuItem>
+                            <MenuItem onClick={logOut}>Sign out</MenuItem>
                         </MenuList>
                     </Menu>
                 </Flex>
