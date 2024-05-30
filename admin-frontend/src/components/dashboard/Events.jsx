@@ -6,15 +6,6 @@ import {
 	useColorModeValue,
 	VStack,
 	SimpleGrid,
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalFooter,
-	ModalBody,
-	ModalCloseButton,
-	Input,
-	Image,
 	Stack,
 	useDisclosure,
 	Divider, 
@@ -46,7 +37,7 @@ const EventRegistrationForm = ({fetchEvents, onClose, locations}) => {
 					successNotification("Success", "Event was successfully added!");
 					fetchEvents();
 					onClose();
-				}).console(err => {
+				}).catch(err => {
 					errorNotification(
 						err.code,
 						err.message

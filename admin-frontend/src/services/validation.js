@@ -291,3 +291,79 @@ export const adminRegistrationFormValidation = Yup.object({
 				.max(20, "Username cannot be longer than 20 characters!")
 				.required("Password is required")
 });
+
+export const flightRegistrationFormValidation = Yup.object({
+  departure: Yup
+        .date()
+        .typeError("Please enter a valid date")
+        .required("Date is required"),
+  originId: Yup
+        .number()
+        .required("Origin is required!"),
+  destinationId: Yup
+        .number()
+        .required("Destination is required!")
+        .notOneOf([Yup.ref('originId'), null], "Origin and destination must be different!")
+});
+
+export const flightUpdateFormValidation = Yup.object({
+  departure: Yup
+        .date()
+        .typeError("Please enter a valid date")
+        .required("Date is required"),
+  originId: Yup
+        .number()
+        .required("Origin is required!"),
+  destinationId: Yup
+        .number()
+        .required("Destination is required!")
+        .notOneOf([Yup.ref('originId'), null], "Origin and destination must be different!")
+});
+
+export const itemRegistrationFormValidation = Yup.object({
+  name: Yup
+      .string()
+      .min(2, "Item must be longer than 2 characters!")
+      .max(30, "Item cannot be longer than 30 characters!")
+      .required("Item is required!")
+})
+
+export const hotelRegistrationFormValidation = Yup.object({
+  name: Yup
+      .string()
+      .min(2, "Hotel name must be longer than 2 characters!")
+      .max(30, "Hotel name cannot be longer than 30 characters!")
+      .required("Hotel name is required"),
+  locationId: Yup
+      .number()
+      .required("Location is required!"),
+  rating: Yup
+      .number()
+      .min(0, "Rating cannot be less than 0!")
+      .max(5, "Rating cannot be larger than 5")
+      .required("Rating is required!"),
+  bookingLink: Yup
+      .string()
+      .matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/, 'Enter a valid link!')
+      .required("Booking link is required!")
+});
+
+export const hotelUpdateFormValidation = Yup.object({
+  name: Yup
+      .string()
+      .min(2, "Hotel name must be longer than 2 characters!")
+      .max(30, "Hotel name cannot be longer than 30 characters!")
+      .required("Hotel name is required"),
+  locationId: Yup
+      .number()
+      .required("Location is required!"),
+  rating: Yup
+      .number()
+      .min(0, "Rating cannot be less than 0!")
+      .max(5, "Rating cannot be larger than 5")
+      .required("Rating is required!"),
+  bookingLink: Yup
+      .string()
+      .matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/, 'Enter a valid link!')
+      .required("Booking link is required!")
+});

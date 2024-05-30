@@ -36,17 +36,21 @@ import {
 import { BsSignpostSplit } from "react-icons/bs";
 import { GiJourney } from "react-icons/gi";
 import { MdEventAvailable } from "react-icons/md";
+import { BsSunglasses } from "react-icons/bs";
+import { FaPlane, FaHotel } from "react-icons/fa";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { RiAdminLine } from "react-icons/ri";
 import Users from '../dashboard/Users.jsx';
 import Locations from '../dashboard/Locations.jsx'
 import Events from '../dashboard/Events.jsx';
-import PostsDashboard from '../dashboard/Posts.jsx';
+import Posts from '../dashboard/Posts.jsx';
 import Activities from '../dashboard/Activities.jsx';
 import News from '../dashboard/News.jsx';
 import AdminProfile from '../profile/AdminProfile.jsx';
-
+import Flights from '../dashboard/Flights.jsx';
+import Items from '../dashboard/Items.jsx';
+import Hotels from '../dashboard/Hotels.jsx';
 
 const LinkItems = [
     { name: 'Users', icon: FiUsers },
@@ -55,8 +59,10 @@ const LinkItems = [
     { name: 'Activities', icon: FiDribbble },
     { name: 'Events', icon: MdEventAvailable },
     { name: 'News', icon: FaRegNewspaper },
-    { name: 'Trips', icon: GiJourney }
-    // { name: 'Profile', icon: RiAdminLine }
+    { name: 'Trips', icon: GiJourney },
+    { name: 'Flights', icon: FaPlane },
+    { name: 'Hotels', icon: FaHotel },
+    { name: 'Items', icon: BsSunglasses}
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -87,12 +93,15 @@ export default function SidebarWithHeader({ children }) {
             <Box ml={{ base: 0, md: 60 }} p="4">
                 {selectedContent === 'Users' && <Users />}
                 {selectedContent === 'Locations' && <Locations />}
-                {selectedContent === 'Posts' && <PostsDashboard />}
+                {selectedContent === 'Posts' && <Posts />}
                 {selectedContent === 'Activities' && <Activities/>}
                 {selectedContent === 'Events' && <Events />}
                 {selectedContent === 'News' && <News /> }
                 {selectedContent === 'Trips' && <Trips />}
                 {selectedContent === 'Profile' && <AdminProfile />}
+                {selectedContent === 'Flights' && <Flights />}
+                {selectedContent === 'Hotels' && <Hotels />}
+                {selectedContent === 'Items' && <Items />}
                 {children}
             </Box>
         </Box>
@@ -192,12 +201,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
             </Text>
 
             <HStack spacing={{ base: '0', md: '6' }}>
-                <IconButton
-                    size="lg"
-                    variant="ghost"
-                    aria-label="open menu"
-                    icon={<FiBell />}
-                />
                 <Flex alignItems={'center'}>
                     <Menu>
                         <MenuButton
@@ -228,8 +231,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
                         <MenuList
                             bg={useColorModeValue('white', 'gray.900')}
                             borderColor={useColorModeValue('gray.200', 'gray.700')}>
-                            <MenuItem>Profile</MenuItem>
-                            <MenuDivider />
                             <MenuItem onClick={logOut}>Sign out</MenuItem>
                         </MenuList>
                     </Menu>
