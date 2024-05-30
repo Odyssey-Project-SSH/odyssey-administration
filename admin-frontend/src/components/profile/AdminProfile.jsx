@@ -6,22 +6,8 @@ import {
     Center, 
     Text, 
     Box, 
-    Button,
-    Drawer, 
-	DrawerOverlay,
-	DrawerContent, 
-	DrawerCloseButton, 
-	DrawerHeader, 
-	DrawerBody,
-    useDisclosure,
-    Divider,
-    Stack
+
 } from "@chakra-ui/react";
-import { MdBuild } from "react-icons/md";
-import { verify, updateUser } from "../../services/client";
-import { Formik, Form } from 'formik';
-import { TextInput, FileInput } from '../shared/FormComponents.jsx';
-import { successNotification, errorNotification } from '../../services/notification.js';
 
 const AdminProfile = () => {
     
@@ -45,7 +31,7 @@ const AdminProfile = () => {
         return (<Text size={'ms'}>Fetch user data...</Text>);
     }
 
-    if (admin == null) {
+    if (!loading && admin == null) {
         return (
             <Text size={'ms'}>Sorry! Something went wrong!</Text>
         );

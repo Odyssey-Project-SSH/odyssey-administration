@@ -21,7 +21,6 @@ import {
 	DrawerCloseButton, 
 	DrawerHeader, 
 	DrawerBody,
-    Box,
 } from '@chakra-ui/react';
 import { Formik, Form} from 'formik';
 import {successNotification, errorNotification} from '../../services/notification.js';

@@ -83,6 +83,63 @@ export const getNews = async () => {
     }
 }
 
+export const getFlights = async () => {
+    try {
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/flights`
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const getHotels = async () => {
+    try {
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/hotels`
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const getItems = async () => {
+    try {
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/items`
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const getTrips = async () => {
+    try {
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/trips`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const getPosts = async () => {
+    try {
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/posts`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
 // DELETE REQUESTS
 
 export const deleteUser = async (userId) => {
@@ -137,6 +194,66 @@ export const deleteNews = async (newsId) => {
     try {
         return await axios.delete(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/news/${newsId}`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const deleteFlight = async (flightId) => {
+    try {
+        return await axios.delete(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/flights/${flightId}`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const deleteHotel = async (hotelId) => {
+    try {
+        return await axios.delete(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/hotels/${hotelId}`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const deleteItem = async (itemId) => {
+    try {
+        return await axios.delete(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/items/${itemId}`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const deleteTrip = async (tripId) => {
+    try {
+        return await axios.delete(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/trips/${tripId}`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const deletePost = async (postId) => {
+    try {
+        return await axios.delete(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/posts/${postId}`,
             getAuthConfig()
         );
     }
@@ -212,6 +329,45 @@ export const registerNews = async (news) => {
     }
 }
 
+export const registerFlight = async (flight) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/flights`,
+            flight,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const registerHotel = async (hotel) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/hotels`,
+            hotel,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const registerItem = async (item) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/items`,
+            item,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
 // PUT REQUESTS
 
 export const updateUser = async (id, user) => {
@@ -269,6 +425,30 @@ export const updateNews = async (id, news) => {
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/news/${id}`,
             news,
             getAuthConfigWithMultipartFiles()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+export const updateFlight = async (id, flight) => {
+    try {
+        return await axios.put(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/flights/${id}`,
+            flight,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+export const updateHotel = async (id, hotel) => {
+    try {
+        return await axios.put(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/hotels/${id}`,
+            hotel,
+            getAuthConfig()
         );
     }
     catch (e) {

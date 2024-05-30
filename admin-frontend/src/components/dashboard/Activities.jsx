@@ -15,8 +15,8 @@ import {
 	Divider
 } from '@chakra-ui/react';
 import { FaPlus } from "react-icons/fa";
-import {TextInput, SelectInput} from "../shared/FormComponents.jsx";
-import {Formik, Form} from "formik";
+import { TextInput, SelectInput } from "../shared/FormComponents.jsx";
+import { Formik, Form } from "formik";
 import { activityRegistrationFormValidation } from '../../services/validation.js';
 import { getActivities, registerActivity, getLocations } from "../../services/client";
 import ActivityCard from "../shared/ActivityCard.jsx";
