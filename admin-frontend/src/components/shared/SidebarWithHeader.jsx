@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Trips from '../dashboard/Trips.jsx';
+import LocalCuisine from '../dashboard/LocalCuisine.jsx'
 import { useAuth } from '../context/AuthContext.jsx';
 import logo from '../../assets/odyssey-logo.png'
+import { ImSpoonKnife } from "react-icons/im";
 import {
   IconButton,
   Avatar,
@@ -51,6 +53,7 @@ import AdminProfile from '../profile/AdminProfile.jsx';
 import Flights from '../dashboard/Flights.jsx';
 import Items from '../dashboard/Items.jsx';
 import Hotels from '../dashboard/Hotels.jsx';
+//import LocalCuisine from '../dashboard/LocalCuisine.jsx';
 
 const LinkItems = [
     { name: 'Users', icon: FiUsers },
@@ -62,7 +65,8 @@ const LinkItems = [
     { name: 'Trips', icon: GiJourney },
     { name: 'Flights', icon: FaPlane },
     { name: 'Hotels', icon: FaHotel },
-    { name: 'Items', icon: BsSunglasses}
+    { name: 'Items', icon: BsSunglasses},
+    { name: 'Local Cuisine', icon: ImSpoonKnife}
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -102,6 +106,7 @@ export default function SidebarWithHeader({ children }) {
                 {selectedContent === 'Flights' && <Flights />}
                 {selectedContent === 'Hotels' && <Hotels />}
                 {selectedContent === 'Items' && <Items />}
+                {selectedContent === 'LocalCuisine' && <LocalCuisine/>}
                 {children}
             </Box>
         </Box>
