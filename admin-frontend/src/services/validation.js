@@ -367,3 +367,51 @@ export const hotelUpdateFormValidation = Yup.object({
       .matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/, 'Enter a valid link!')
       .required("Booking link is required!")
 });
+
+export const localCuisineRegistrationFormValidation = Yup.object({
+    name: Yup
+                .string()
+                .min(2, "Name has to be at least 2 characters!")
+                .max(50, "Name cannot be longer than 50 characters!")
+                .required("Name is required!"),
+    description: Yup
+                .string()
+                .min(10, "Description has to be at least 10 characters!")
+                .max(500, "Description cannot be longer than 500 characters!")
+                .required("Description is required!"),
+    image: Yup
+                .mixed()
+                .required("Picture is required!")
+                .test("fileFormat", "Not a valid image type", value => {
+                    if (value) {
+                        const supportedFormats = ['jpg', 'jpeg', 'png'];
+                        return supportedFormats.includes(value.name.split('.').pop());
+                      }
+                      return true;
+                })
+                .test('fileSize', 'File size must be less than 3MB', value => {
+                    if (value) {
+                      return value.size <= 3145728;
+                    }
+                    return true;
+                }),
+    locationId: Yup
+                .number()
+                .required("Location is required!")
+});
+
+export const localCuisineUpdateFormValidation = Yup.object({
+    name: Yup
+        .string()
+        .min(2, "Name has to be at least 2 characters!")
+        .max(50, "Name cannot be longer than 50 characters!")
+        .required("Name is required!"),
+    description: Yup
+        .string()
+        .min(10, "Description has to be at least 10 characters!")
+        .max(500, "Description cannot be longer than 500 characters!")
+        .required("Description is required!"),
+    locationId: Yup
+        .number()
+        .required("Location is required!")
+})
