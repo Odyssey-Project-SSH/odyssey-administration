@@ -368,7 +368,7 @@ export const hotelUpdateFormValidation = Yup.object({
       .required("Booking link is required!")
 });
 
-export const localCuisinesRegistrationFormValidation = Yup.object({
+export const localCuisineRegistrationFormValidation = Yup.object({
     name: Yup
                 .string()
                 .min(2, "Name has to be at least 2 characters!")
@@ -379,7 +379,7 @@ export const localCuisinesRegistrationFormValidation = Yup.object({
                 .min(10, "Description has to be at least 10 characters!")
                 .max(500, "Description cannot be longer than 500 characters!")
                 .required("Description is required!"),
-    file: Yup
+    image: Yup
                 .mixed()
                 .required("Picture is required!")
                 .test("fileFormat", "Not a valid image type", value => {
@@ -395,26 +395,23 @@ export const localCuisinesRegistrationFormValidation = Yup.object({
                     }
                     return true;
                 }),
-    date: Yup
-                .date()
-                .transform((value, originalValue) => {
-                    const result = parse(originalValue, "yyyy-MM-dd", new Date());
-                    return result;
-                })
-                .typeError("Please enter a valid date")
-                .required()
-                .min("2024-01-01", "Date is too early"),
-    cost: Yup
-                .number()
-                .test('integer', "Number must be integer!", (value) => Number.isInteger(value))
-                .min(0, "Cost cannot be less than 1!")
-                .required("Cost is required!"),
-    duration: Yup
-                .number()
-                .test('integer', "Number must be integer!", (value) => Number.isInteger(value))
-                .min(1, "Duration cannot be less than 1 day!")
-                .required("Duration is required!"), 
     locationId: Yup
                 .number()
                 .required("Location is required!")
 });
+
+export const localCuisineUpdateFormValidation = Yup.object({
+    name: Yup
+        .string()
+        .min(2, "Name has to be at least 2 characters!")
+        .max(50, "Name cannot be longer than 50 characters!")
+        .required("Name is required!"),
+    description: Yup
+        .string()
+        .min(10, "Description has to be at least 10 characters!")
+        .max(500, "Description cannot be longer than 500 characters!")
+        .required("Description is required!"),
+    locationId: Yup
+        .number()
+        .required("Location is required!")
+})

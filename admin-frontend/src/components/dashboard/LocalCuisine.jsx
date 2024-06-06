@@ -19,8 +19,8 @@ import {
 import { FaPlus } from "react-icons/fa";
 import { TextInput, FileInput, SelectInput } from '../shared/FormComponents.jsx';
 import { Formik, Form } from "formik";
-import { localCuisineFormValidation } from '../../services/validation.js';
-import { registerLocalCuisine, getLocalCuisines, getLocations } from '../../services/client';
+import { localCuisineRegistrationFormValidation } from '../../services/validation.js';
+import { registerLocalCuisine, getLocalCuisine, getLocations } from '../../services/client';
 import { successNotification, errorNotification } from '../../services/notification.js';
 import LocalCuisineCard from "../shared/LocalCuisineCard.jsx";
 
@@ -28,15 +28,17 @@ const LocalCuisineRegistrationForm = ({ fetchLocalCuisines, onClose, locations }
     return (
         <Formik
             validateOnMount={true}
-            validationSchema={localCuisineFormValidation}
-            initialValues={{ name: '', description: '', file: null, locationId: 0 }}
+            validationSchema={ localCuisineRegistrationFormValidation }
+            initialValues={{ name: null, description: null, image: null, locationId: null }}
             onSubmit={(values, { setSubmitting }) => {
+                console.log(1)
                 setSubmitting(true);
                 registerLocalCuisine(values).then(res => {
                     successNotification("Success", "Local Cuisine was successfully added!");
                     fetchLocalCuisines();
                     onClose();
                 }).catch(err => {
+                    console.log(err)
                     errorNotification(
                         err.code,
                         err.message
@@ -62,7 +64,7 @@ const LocalCuisineRegistrationForm = ({ fetchLocalCuisines, onClose, locations }
                                 </option>
                             ))}
                         </SelectInput>
-                        <FileInput label="Picture" name="file" type="file" />
+                        <FileInput label="Picture" name="image" type="file" />
                         <Button type="submit" colorScheme={'cyan'} color={'white'} disabled={!isValid || isSubmitting}>Register</Button>
                     </Stack>
                 </Form>
@@ -71,7 +73,8 @@ const LocalCuisineRegistrationForm = ({ fetchLocalCuisines, onClose, locations }
     );
 }
 
-const LocalCuisines = () => {
+const LocalCuisine = () => {
+
     const [localCuisines, setLocalCuisines] = useState([]);
     const [loading, setLoading] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -88,16 +91,16 @@ const LocalCuisines = () => {
             setLocations(res.data);
         }).catch(err => {
             console.log(err);
-        }).finally(setLoading(false));
+        }).finally(() => setLoading(false));
     }
 
     const fetchLocalCuisines = () => {
         setLoading(true);
-        getLocalCuisines().then(res => {
+        getLocalCuisine().then(res => {
             setLocalCuisines(res.data);
         }).catch(err => {
             console.log(err);
-        }).finally(setLoading(false));
+        }).finally(() => setLoading(false));
     }
 
     const handleClick = () => {
@@ -121,7 +124,7 @@ const LocalCuisines = () => {
             </Button>
             <VStack align="start" spacing={4} w="100%">
                 <SimpleGrid columns={[1, 2, 3]} spacing={4} w="100%">
-                    {localCuisines.map(localCuisine => (
+                    { localCuisines.map(localCuisine => (
                         <LocalCuisineCard
                             key={localCuisine.id}
                             id={localCuisine.id}
@@ -156,4 +159,4 @@ const LocalCuisines = () => {
     );
 }
 
-export default LocalCuisines;
+export default LocalCuisine;

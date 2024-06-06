@@ -140,6 +140,18 @@ export const getPosts = async () => {
     }
 }
 
+export const getLocalCuisine = async () => {
+    try {
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/local-cuisine`,
+            getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
 // DELETE REQUESTS
 
 export const deleteUser = async (userId) => {
@@ -262,6 +274,18 @@ export const deletePost = async (postId) => {
     }
 }
 
+export const deleteLocalCuisine = async (id) => {
+    try {
+        return await axios.delete(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/local-cuisine/${id}`,
+            getAuthConfig()
+        )
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
 // POST REQUESTS
 
 export const registerAdmin = async (admin) => {
@@ -368,6 +392,19 @@ export const registerItem = async (item) => {
     }
 }
 
+export const registerLocalCuisine = async (localCuisine) => {
+    try {
+        return await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/local-cuisine`,
+            localCuisine,
+            getAuthConfigWithMultipartFiles()
+        )
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
 // PUT REQUESTS
 
 export const updateUser = async (id, user) => {
@@ -449,6 +486,19 @@ export const updateHotel = async (id, hotel) => {
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/hotels/${id}`,
             hotel,
             getAuthConfig()
+        );
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+export const updateLocalCuisine = async (id, localCuisine) => {
+    try {
+        return await axios.put(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/local-cuisine/${id}`,
+            localCuisine,
+            getAuthConfigWithMultipartFiles()
         );
     }
     catch (e) {
